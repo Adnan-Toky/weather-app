@@ -509,7 +509,7 @@ class App extends Component {
           }
         }
       }
-      lxhttp.open("GET", "http://dev.virtualearth.net/REST/v1/Locations?q="+q+"&maxResults=20&key=AtYQBO45F9ORGtHUJHDdZBmKHCEJoS6CsQFTJM3hb7fjRhI9BvPJHcIXkb1-MiWI", true);
+      lxhttp.open("GET", "https://dev.virtualearth.net/REST/v1/Locations?q="+q+"&maxResults=20&key=AtYQBO45F9ORGtHUJHDdZBmKHCEJoS6CsQFTJM3hb7fjRhI9BvPJHcIXkb1-MiWI", true);
       lxhttp.send();
     }
     else{
@@ -518,17 +518,18 @@ class App extends Component {
   }
 
   openSettings(){
-    this.setState({openedSettings:true});
+    //this.setState({openedSettings:true});
+    alert('Not emplemented...');
   }
 
   updateWeatherData(lat,lon,loc){
     let State = this;
-    fetch("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&APPID=15d7d2d0d4a489e05feb0ee6cf59b7bb")
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&APPID=15d7d2d0d4a489e05feb0ee6cf59b7bb")
       .then(res=>res.json()).then(
         result=>{
           this.setState({city:loc.split(",")[0] || result.name,country:loc.split(",")[1] || result.sys.country});
           this.setState(updateMainInfo(result));
-          fetch("http://api.timezonedb.com/v2/get-time-zone?key=ARWGDZXY8NXV&format=json&by=position&lat="+lat+"&lng="+lon)
+          fetch("https://api.timezonedb.com/v2/get-time-zone?key=ARWGDZXY8NXV&format=json&by=position&lat="+lat+"&lng="+lon)
             .then(obj=>obj.json()).then(
               timeObj=>{
                 let timeOffset = timeObj.gmtOffset + new Date().getTimezoneOffset()*60;
@@ -554,7 +555,7 @@ class App extends Component {
         }
       )
 
-      fetch("http://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&APPID=15d7d2d0d4a489e05feb0ee6cf59b7bb")
+      fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&APPID=15d7d2d0d4a489e05feb0ee6cf59b7bb")
         .then(res=>res.json()).then(
           result=>{
             let weather = {...this.state.forecast};

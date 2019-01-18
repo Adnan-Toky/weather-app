@@ -324,7 +324,35 @@ var graphCtx;
 var tooltips;
 var lxhttp;
 
+class SuggestGithub extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      visibility : 'block'
+    }
+    this.handleCancel = this.handleCancel.bind(this);
+  }
 
+  handleCancel(){
+    this.setState({visibility:'none'});
+  }
+
+  render (){
+    return (
+      <div className='suggestDiv' style={{display:this.state.visibility}}>
+        <div className='suggestContent' style={{width:ui.appW}}>
+          <div className='suggestTextCnt'>
+            <span>View source code or contribute to this project on <a href='https://github.com/Adnan-Toky/weather-app' target="_blank">GitHub</a></span>
+          </div>
+          <div className='suggestBtnCnt'>
+            <button className='btnCancel' onClick={this.handleCancel}>No, Thanks</button>
+            <a href='https://github.com/Adnan-Toky/weather-app' target="_blank"><button className='btnProceed' onClick={this.handleCancel}>Visit Now</button></a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 class App extends Component {
   constructor(props){
@@ -591,6 +619,7 @@ class App extends Component {
         <Weather identity="weather2" day="Tomorrow" icon={ui.stateIcons[this.state.tomorrowStateIcon]} state={this.state.tomorrowState} min={this.state.tomorrowMin} max={this.state.tomorrowMax} />
         <InfoTable pressure={this.state.pressure} humidity={this.state.humidity+"%"} rainfall={this.state.rainfall+" mm"} snow={this.state.snow+" mm"} visibility={this.state.visibility+" km"} clouds={this.state.clouds+"%"} />
         <ForecastTable days={this.state.forecast.days} weathers={this.state.forecast.weather} time={this.state.forecast.time} />
+        <SuggestGithub/>
       </div>
     );
   }

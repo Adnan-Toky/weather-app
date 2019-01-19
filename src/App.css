@@ -8,6 +8,7 @@ body {
   text-align:center;
   background:#147abe;
   font-family:futura;
+  cursor: default;
 }
 
 .app {
@@ -282,7 +283,6 @@ body {
   width: 100%;
   z-index: 100;
   bottom: 0;
-  left: 8px;
   margin: 0;
   padding: 0;
   text-align: center;

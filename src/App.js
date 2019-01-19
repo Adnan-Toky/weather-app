@@ -328,7 +328,8 @@ class SuggestGithub extends Component {
   constructor(props){
     super(props);
     this.state = {
-      visibility : 'block'
+      visibility : 'block',
+      leftTransform : (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) ? 0 : 8
     }
     this.handleCancel = this.handleCancel.bind(this);
   }
@@ -339,14 +340,14 @@ class SuggestGithub extends Component {
 
   render (){
     return (
-      <div className='suggestDiv' style={{display:this.state.visibility}}>
+      <div className='suggestDiv' style={{display:this.state.visibility,left:this.state.leftTransform}}>
         <div className='suggestContent' style={{width:ui.appW}}>
           <div className='suggestTextCnt'>
-            <span>View source code or contribute to this project on <a href='https://github.com/Adnan-Toky/weather-app' target="_blank">GitHub</a></span>
+            <span>View source code or contribute to this project on <a href='https://github.com/Adnan-Toky/weather-app' target="_blank" rel="noopener noreferrer">GitHub</a></span>
           </div>
           <div className='suggestBtnCnt'>
             <button className='btnCancel' onClick={this.handleCancel}>No, Thanks</button>
-            <a href='https://github.com/Adnan-Toky/weather-app' target="_blank"><button className='btnProceed' onClick={this.handleCancel}>Visit Now</button></a>
+            <a href='https://github.com/Adnan-Toky/weather-app' target="_blank" rel="noopener noreferrer"><button className='btnProceed' onClick={this.handleCancel}>Visit Now</button></a>
           </div>
         </div>
       </div>
@@ -547,7 +548,7 @@ class App extends Component {
 
   openSettings(){
     //this.setState({openedSettings:true});
-    alert('Not emplemented...');
+    alert('Not implemented...');
   }
 
   updateWeatherData(lat,lon,loc){
